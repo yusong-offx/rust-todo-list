@@ -1,0 +1,21 @@
+users: {
+    shape: sql_table
+    id: serial { constraint : primary_key }
+    username: varchar(20), not null { constraint : unique }
+    password: char(60), not null
+    email: varchar(255) { constraint : unique }
+    created_at: timestamp, not null, default now()
+}
+
+todos: {
+    shape: sql_table
+    id: serial { constraint : primary_key }
+    user_id: serial, on_delete_cascade { constraint : foreign_key }
+    name: varchar(100), not null
+    contents: varchar(255)
+    due_date: Date
+    completed: boolean, not null, default false,
+    created_at: timestamp, not null, default now()
+}
+
+todos.user_id -> users.id

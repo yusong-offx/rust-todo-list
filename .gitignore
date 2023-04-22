@@ -1,0 +1,3 @@
+/server/target/
+/postgre-db/pgdata/
+/server/entity/.vscode/
