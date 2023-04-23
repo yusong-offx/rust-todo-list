@@ -26,6 +26,7 @@ Rust를 사용하여 간단한 Todo-list API를 작성하였습니다.
 **[raw sql schema](./postgre-db/schemas.sql)*
 
 ## API
+_Option\<T>는 nullable 함을 의미합니다._
 ```
 http://localhost:8080/user/register
 ```
@@ -45,8 +46,8 @@ http://localhost:8080/user/register
         // 를 포함해야합니다.
         "password" : String, 
 
-        // 따로 이메일 형식의 검증을 하지않고 있으며
-        // 중복은 허용하지 않습니다.
+        // 이메일 형식의 검증을 하지않고 있으며
+        // 1-255자 사이의 문자열이며 중복은 허용하지 않습니다.
         "email" : String
     }
     ```
@@ -121,11 +122,31 @@ http://localhost:8080/user/{user_id}
 http://localhost:8080/user/{user_id}/todo/register
 ```
 - __POST__   
-    다음과 같은 데이터를 요구합니다.
+    다음과 같은 데이터를 요구합니다.  
+
     ```rust
+    {
+        // 1-100자 길이 제한
+        "name" : String,
+
+        // 0-255자 길이 제한
+        "contents" : Option<String>,
+
+        "due_date" : Option<Date>,
+        "completed" : bool
+    }
     ```
     다음과 같은 데이터를 반환합니다.
     ```rust
+    {
+        "id" : i32,
+        "user_id" : i32,
+        "name" : String,
+        "contents" : Option<String>,
+        "due_date" : Option<Date>,
+        "completed" : bool,
+        "created_at" : DateTime,
+    }
     ```
 <br/>
 
@@ -133,11 +154,21 @@ http://localhost:8080/user/{user_id}/todo/register
 http://localhost:8080/user/{user_id}/todo?page=<u64>
 ```
 - __GET__   
-    다음과 같은 데이터를 요구합니다.
-    ```rust
-    ```
+    필수적으로 쿼리데이터 page=\<u64>를 요구합니다.   
     다음과 같은 데이터를 반환합니다.
     ```rust
+    // id를 기준으로(최신순) 5개씩 반환합니다.
+    [
+        {
+            "id" : i32,
+            "user_id" : i32,
+            "name" : String,
+            "contents" : Option<String>,
+            "due_date" : Option<Date>,
+            "completed" : bool,
+            "created_at" : DateTime,
+        },
+    ]
     ```
 <br/>
 
@@ -147,14 +178,24 @@ http://localhost:8080/user/{user_id}/todo/{todo_id}
 - __PUT__   
     다음과 같은 데이터를 요구합니다.
     ```rust
+    {
+        "name" : String,
+        "contents" : Option<String>,
+        "due_date" : Option<Date>,
+        "completed" : bool
+    }
     ```
     다음과 같은 데이터를 반환합니다.
     ```rust
+    {
+        "id" : i32,
+        "user_id" : i32,
+        "name" : String,
+        "contents" : Option<String>,
+        "due_date" : Option<Date>,
+        "completed" : bool,
+        "created_at" : DateTime,
+    }
     ```
 - __DELETE__   
-    다음과 같은 데이터를 요구합니다.
-    ```rust
-    ```
-    다음과 같은 데이터를 반환합니다.
-    ```rust
-    ```
+    상태코드(status code) 204(No content)를 반환합니다.

@@ -1,15 +1,11 @@
 version: '3.9'
+
 services:
-  pgadmin4:
-    restart: always
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=hssong1024@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=pgadmin
-    ports:
-      - 5050:80
-    depends_on:
-      - postgre-db
+  # actix-web-server:
+  #   restart: always
+  #   build: ./server
+  #   ports:
+  #     - 8080:8080
 
   postgre-db:
     restart: always
@@ -18,3 +14,15 @@ services:
       - ./postgre-db/pgdata:/var/lib/postgresql/data/pgdata
     ports:
       - 5432:5432
+
+  # 필요시 주석제거후 생성
+  # pgadmin4:
+  #   restart: always
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=hssong1024@gmail.com
+  #     - PGADMIN_DEFAULT_PASSWORD=pgadmin
+  #   ports:
+  #     - 5050:80
+  #   depends_on:
+  #     - postgre-db
