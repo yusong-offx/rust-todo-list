@@ -4,6 +4,7 @@ Rust를 사용하여 간단한 Todo-list API를 작성하였습니다.
 ## Skills
 - [Actix-Web](https://actix.rs/)(rust)
 - [SeaORM](https://github.com/SeaQL/sea-orm)(postgresql)
+- Docker(docker-compose)
 
 ## Features
 - ORM 사용
