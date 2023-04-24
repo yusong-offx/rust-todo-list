@@ -9,7 +9,7 @@ pub mod entities;
 pub mod mutation;
 
 pub async fn database_connect() -> Result<DatabaseConnection, DbErr>{
-    let mut opt = ConnectOptions::new(String::from("postgres://postgres:dockerdb@localhost:5432/rust-todo"));
+    let mut opt = ConnectOptions::new(String::from("postgres://postgres:dockerdb@postgre-db:5432/rust-todo"));
     opt.max_connections(100)
         .min_connections(5)
         .connect_timeout(Duration::from_secs(8))

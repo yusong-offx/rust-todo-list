@@ -1,11 +1,13 @@
 version: '3.9'
 
 services:
-  # actix-web-server:
-  #   restart: always
-  #   build: ./server
-  #   ports:
-  #     - 8080:8080
+  actix-web-server:
+    restart: always
+    build: ./server
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgre-db
 
   postgre-db:
     restart: always
