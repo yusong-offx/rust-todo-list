@@ -20,7 +20,11 @@ Rust를 사용하여 간단한 Todo-list API를 작성하였습니다.
   - rust app, postgresql, 필요시 pgadmin 을 실행
 - test code 작성 
   - 통합(Integration) 테스트만 작성
-  - coverage x%
+  - <details>
+    <summary>coverage</summary>
+
+    ![coverage.png](./coverage.png)
+    </details>
 
 ## Schemas
 ![schemas d2.svg image](./postgre-db/schemas.svg)   
