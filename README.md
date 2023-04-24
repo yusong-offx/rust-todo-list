@@ -130,6 +130,7 @@ http://localhost:8080/user/{user_id}/todo/register
     다음과 같은 데이터를 요구합니다.  
 
     ```rust
+    // Content-Type: Application/json
     {
         // 1-100자 길이 제한
         "name" : String,
@@ -183,6 +184,7 @@ http://localhost:8080/user/{user_id}/todo/{todo_id}
 - __PUT__   
     다음과 같은 데이터를 요구합니다.
     ```rust
+    // Content-Type: Application/json
     {
         "name" : String,
         "contents" : Option<String>,
